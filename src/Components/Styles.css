@@ -1,0 +1,135 @@
+*{
+    background-color: rgb(5, 15, 94);
+    color: white;
+}
+
+.ToDoListForm{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    justify-content: center;
+    margin-top: 2rem;
+    font-size: 1.4rem;
+}
+h1{
+    font-size: 3rem;
+    background-color: rgb(0, 0, 0);
+    margin-top: -32px;
+    padding-top: 30px;
+    margin-left: -7px;
+    margin-right: -7px;
+    padding-bottom: 10px;
+}
+button{
+    font-size: 1.2rem;
+    margin-right: 15px;
+    margin-left: 15px;
+    border-style: none;
+    border-radius: 5px;
+    border-width: 3px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+.Add-button{
+    background-color: hsl(119, 80%, 46%);
+    margin-left: 10px;
+    
+}
+.Add-button:hover{
+    background-color: hsl(119, 80%, 36%);
+
+}
+
+.Delete-button{
+    background-color: hsl(0, 75%, 45%);
+}
+.Delete-button:hover{
+    background-color: hsl(0, 75%, 35%);
+    
+}
+.Completed-button{
+    background-color: hsl(119, 80%, 46%);
+    
+    
+}
+.Completed-button:hover{
+    background-color: hsl(119, 80%, 36%);
+
+}
+
+.Edit-button{
+    background-color: hsl(59, 91%, 34%);
+}
+
+.Edit-button:hover{
+    background-color: hsl(59, 91%, 24%);
+}
+
+.Save-button{
+    background-color: hsl(141, 61%, 48%);
+}
+
+.Save-button:hover{
+    background-color: hsl(141, 61%, 38%);
+}
+
+ol{
+    margin-top: 30px;
+    
+}
+li{
+    list-style: none;
+}
+.task-box{
+    margin-top: 10px;
+    padding: 10px;
+    border: 3px solid hsl(33, 100%, 88%);
+    border-radius: 5px;
+    left: 50%;
+    right: 50%;
+    align-items: center;
+    
+    
+}
+.task-wrapper{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 3px solid hsl(0, 0%, 0%);
+    border-radius: 5px;
+    left: 50%;
+    right: 50%;
+    align-items: center;
+    background-color: hsl(39, 100%, 50%);
+}
+
+.task-wrapper:hover{
+    background-color: hsl(39, 100%, 45%);
+}
+
+.text{
+    background-color: orange;
+    
+}
+
+input[type="text"]{
+    font-size: 1.6rem;
+    padding: 10px;
+    border: 5px solid black;
+    background-color: white;
+    color: black;
+}
+
+.strike {
+    text-decoration: line-through;
+    color: gray;
+}
+
+
+button:disabled {
+    background-color: lightgray;
+    cursor: not-allowed;
+}
+
+button:disabled:hover{
+    background-color: lightgray;
+}
