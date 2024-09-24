@@ -53,7 +53,7 @@ const ToDoList = () => {
     };
 
     return (
-        <div className="Container">
+     
             <div className="ToDoListForm">
                 <h1>TO DO LIST</h1>
                 <div>
@@ -128,7 +128,7 @@ const ToDoList = () => {
                     )}
                 </ul>
             </div>
-        </div>
+        
     );
 };
 
