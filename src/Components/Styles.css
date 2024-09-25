@@ -32,6 +32,7 @@ button{
 .Add-button{
     background-color: hsl(119, 80%, 46%);
     margin-left: 10px;
+    font-size: 2rem;
     
 }
 .Add-button:hover{
@@ -80,7 +81,7 @@ li{
     list-style: none;
 }
 .task-box{
-    margin-top: 20px;
+    margin-top: 40px;
     padding: 10px;
     border: 3px solid hsl(33, 100%, 88%);
     border-radius: 5px;
