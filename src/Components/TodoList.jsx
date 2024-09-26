@@ -11,7 +11,6 @@ const ToDoList = () => {
     const handleInput = (event) => {
         setNewTasks(event.target.value);  
     };
-
     const addTask = () => {
         if(newTask.trim() !== ""){
             setTasks(t => [...t, { text: newTask, completed: false }]);
@@ -24,7 +23,7 @@ const ToDoList = () => {
         setTasks(updatedTasks);
     };
 
-    
+
     const editTask = (index) => {
         setEditIndex(index); 
         setEditText(tasks[index].text); 
@@ -56,7 +55,7 @@ const ToDoList = () => {
      
             <div className="ToDoListForm">
                 <h1>TO DO LIST</h1>
-                <div>
+                <div className="body">
                     <input
                         className="Entertask"
                         type="text"
@@ -78,7 +77,6 @@ const ToDoList = () => {
                             key={index}
                         >
                             {editIndex === index ? (
-                        
                                 <input
                                     type="text"
                                     className="edit-input"
@@ -91,7 +89,7 @@ const ToDoList = () => {
                                 </span>
                             )}
 
-                          
+                    
                             {editIndex === index ? (
                                 <button
                                     className="Save-button"
@@ -108,8 +106,7 @@ const ToDoList = () => {
                                     Edit
                                 </button>
                             )}
-                            
-                            
+                        
                             <button
                                 className="Completed-button"
                                 onClick={() => completedTask(index)}
