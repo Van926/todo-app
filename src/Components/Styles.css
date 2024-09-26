@@ -126,7 +126,7 @@ input[type="text"]{
 
 .strike {
     text-decoration: line-through;
-    color: gray;
+    color: hsl(0, 4%, 26%);
 }
 
 
