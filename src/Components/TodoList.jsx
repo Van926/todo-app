@@ -1,44 +1,50 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import './Styles.css';
 
 const ToDoList = () => {
+    const [tasks, setTasks] = useState(() => {
+        const savedTasks = localStorage.getItem("tasks");
+        return savedTasks ? JSON.parse(savedTasks) : [];
+    });
     
-    const [tasks, setTasks] = useState([]);
     const [newTask, setNewTasks] = useState("");
-    const [editIndex, setEditIndex] = useState(null); 
-    const [editText, setEditText] = useState(""); 
+    const [editIndex, setEditIndex] = useState(null);
+    const [editText, setEditText] = useState("");
 
     const handleInput = (event) => {
         setNewTasks(event.target.value);  
     };
+
     const addTask = () => {
         if(newTask.trim() !== ""){
-            setTasks(t => [...t, { text: newTask, completed: false }]);
+            const updatedTasks = [...tasks, { text: newTask, completed: false }];
+            setTasks(updatedTasks);
             setNewTasks("");
+            localStorage.setItem("tasks", JSON.stringify(updatedTasks));
         }
     };
 
     const removeTask = (index) => {
         const updatedTasks = tasks.filter((_, i) => i !== index);
         setTasks(updatedTasks);
+        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
     };
-
 
     const editTask = (index) => {
-        setEditIndex(index); 
-        setEditText(tasks[index].text); 
+        setEditIndex(index);
+        setEditText(tasks[index].text);
     };
 
-   
     const saveTask = (index) => {
         const updatedTasks = tasks.map((task, i) => {
             if(i === index) {
-                return { ...task, text: editText }; 
+                return { ...task, text: editText };
             }
             return task;
         });
         setTasks(updatedTasks);
-        setEditIndex(null); 
+        setEditIndex(null);
+        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
     };
 
     const completedTask = (index) => {
@@ -49,13 +55,32 @@ const ToDoList = () => {
             return task;
         });
         setTasks(updatedTasks);
+        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
     };
 
+    const undoCompleteTask = (index) => {
+        const updatedTasks = tasks.map((task, i) => {
+            if(i === index) {
+                return { ...task, completed: false };
+            }
+            return task;
+        });
+        setTasks(updatedTasks);
+        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    };
+
+    useEffect(() => {
+        const savedTasks = localStorage.getItem("tasks");
+        if (savedTasks) {
+            setTasks(JSON.parse(savedTasks));
+        }
+    }, []);
+
     return (
-     
+        <div className="Container">
             <div className="ToDoListForm">
                 <h1>TO DO LIST</h1>
-                <div className="body">
+                <div>
                     <input
                         className="Entertask"
                         type="text"
@@ -89,7 +114,6 @@ const ToDoList = () => {
                                 </span>
                             )}
 
-                    
                             {editIndex === index ? (
                                 <button
                                     className="Save-button"
@@ -106,14 +130,25 @@ const ToDoList = () => {
                                     Edit
                                 </button>
                             )}
-                        
-                            <button
-                                className="Completed-button"
-                                onClick={() => completedTask(index)}
-                                disabled={task.completed || editIndex === index}
-                            >
-                                Completed
-                            </button>
+
+                            {/* Step 2: Conditional rendering for Completed or Undo */}
+                            {task.completed ? (
+                                <button
+                                    className="Undo-button"
+                                    onClick={() => undoCompleteTask(index)}
+                                >
+                                    Undo
+                                </button>
+                            ) : (
+                                <button
+                                    className="Completed-button"
+                                    onClick={() => completedTask(index)}
+                                    disabled={editIndex === index}
+                                >
+                                    Completed
+                                </button>
+                            )}
+                            
                             <button
                                 className="Delete-button"
                                 onClick={() => removeTask(index)}
@@ -125,7 +160,7 @@ const ToDoList = () => {
                     )}
                 </ul>
             </div>
-        
+        </div>
     );
 };
 
